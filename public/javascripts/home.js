@@ -24,6 +24,10 @@ dropArea.addEventListener("drop",(e)=>{
 
 submitButton.addEventListener("click",()=>{
     let imgFile = inputFile.files[0];
+    if (!imgFile.type.startsWith('image/')) {
+        alert('Please upload an image file (.png & .jpg)');
+        return;
+    }
     let formData = new FormData();
     formData.append('image', imgFile);
     fetch('/upload', {
