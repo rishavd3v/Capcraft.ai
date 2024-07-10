@@ -1,0 +1,12 @@
+*{
+    font-family:'Poppins','sans-serif';
+}
+body{
+    background-color:var(--main);
+}
+
+.hero{
+    /* background-color: red; */
+    /* font-size: 30px; */
+}
+
