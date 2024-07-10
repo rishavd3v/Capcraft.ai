@@ -27,8 +27,11 @@ router.post('/upload', upload.single('image'), async (req, res) => {
     }
 
     console.log(req.file);
-    res.json({ message: 'Image uploaded successfully' });
-    await generate(req.file.filename);
+    res.json({ message: 'Image uploaded successfully'});
+    let path = req.file.path;
+    let mimeType = req.file.mimetype;
+    
+    await generate(path,mimeType);
     
     fs.unlink(req.file.path, err => {
         if (err) {
