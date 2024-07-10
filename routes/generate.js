@@ -18,7 +18,7 @@ async function generateCaption(path,mimeType) {
   // The Gemini 1.5 models are versatile and work with both text-only and multimodal prompts
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
-  const prompt = "Generate a social media caption for this image";
+  const prompt = "Generate 5 social media caption for this image. Include seo optimized hashtags and keywords";
 
   const imageParts = [
     fileToGenerativePart(path, mimeType),
