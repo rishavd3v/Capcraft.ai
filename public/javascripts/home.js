@@ -23,10 +23,15 @@ dropArea.addEventListener("drop",(e)=>{
 });
 
 submitButton.addEventListener("click",()=>{
+    submitFile();
+})
+
+function submitFile(){
     let imgFile = inputFile.files[0];
-    if (!imgFile.type.startsWith('image/')) {
-        alert('Please upload an image file (.png & .jpg)');
-        return;
+    let mimeType = imgFile.type;
+    
+    if (mimeType !== 'image/png' && mimeType !== 'image/jpeg'){
+        return alert("File not supported!!!");
     }
     let formData = new FormData();
     formData.append('image', imgFile);
@@ -41,4 +46,4 @@ submitButton.addEventListener("click",()=>{
     .catch((error) => {
         console.error('Error:', error);
     });
-})
+}

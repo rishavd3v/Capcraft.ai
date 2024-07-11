@@ -25,12 +25,16 @@ router.post('/upload', upload.single('image'), async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ message: 'No file uploaded' });
     }
-    
+
     let path = req.file.path;
     let mimeType = req.file.mimetype;
     
+    if (mimeType !== 'image/png' && mimeType !== 'image/jpeg'){
+        return res.status(400).json({ message: 'File type not supported.' });
+    }
     let output = await generate(path,mimeType);
     res.json({ message: 'Image uploaded successfully',output: output});
+    console.log("Done");
     fs.unlink(req.file.path, err => {
         if (err) {
             console.error(err);
