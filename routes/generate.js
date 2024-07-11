@@ -25,9 +25,9 @@ async function generateCaption(path,mimeType) {
   ];
 
   const result = await model.generateContent([prompt, ...imageParts]);
-  const response = await result.response;
+  const response = result.response;
   const text = response.text();
-  console.log(text);
+  return text;
 }
 
 module.exports = generateCaption;
