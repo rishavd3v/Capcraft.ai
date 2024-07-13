@@ -56,6 +56,6 @@ async function submitFile(){
         
         let data = await response.text();
         console.log(data.split("&\n"));
-        return(data);
+        return(data.split("&\n"));
     }
 }
