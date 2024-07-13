@@ -22,11 +22,22 @@ dropArea.addEventListener("drop",(e)=>{
     uploadImage();
 });
 
-submitButton.addEventListener("click",()=>{
-    submitFile();
-})
+submitButton.addEventListener ("click",async ()=>{
+    let output = await submitFile();
+    displayOutput(output);
+});
 
-function submitFile(){
+
+function displayOutput(data){
+    let outputDiv = document.getElementById('output');
+    // let html = '<h2>Here are 5 captions for your Image</h2><ul>';
+    // output.forEach((item, index) => {
+    //     html += `<li><strong>${index + 1}.</strong> ${item}</li>`;
+    // });
+    // html += '</ul>';
+    outputDiv.innerHTML = data;
+}
+async function submitFile(){
     let imgFile = inputFile.files[0];
     let mimeType = imgFile.type;
     
@@ -35,15 +46,16 @@ function submitFile(){
     }
     let formData = new FormData();
     formData.append('image', imgFile);
-    fetch('/upload', {
+    let response = await fetch('/upload', {
         method: 'POST',
         body: formData
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data.message,data.output);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    } else {
+        
+        let data = await response.text();
+        console.log(data.split("&\n"));
+        return(data);
+    }
 }

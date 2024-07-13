@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>CAPCRAFT</title>
     <link rel="stylesheet" href="stylesheets/root.css">
     <link rel="stylesheet" href="stylesheets/home.css">
     <link rel="stylesheet" href="stylesheets/output.css">
 </head>
 <body>
-    <section class="hero flex flex-col items-center mt-28">
+    <section class="hero flex flex-col items-center mt-28 home">
         <h1 class="title text-5xl text-accent font-bold mb-6 tracking-wide">CAPCRAFT.AI</h1>
         <p class="text-xl text-white text-center"><span>AI powered</span> caption generator and SEO optimization tools</p>
         <p class="text-xl text-white text-center">Write Magnetic <span class="text-purple-400 font-medium underline-offset-1">Social Captions & Dominate SEO</span></p>
     </section>
 
-    <div class="image-drop flex flex-col items-center justify-center mt-28">
+    <div class="image-drop flex flex-col items-center justify-center mt-28 home">
         <label for="input-file" id="drop-area" class="text-center h-56 w-96 rounded-2xl bg-white p-4">
             <input type="file" accept="image/*" id="input-file" hidden>
             <div id="img-view" class="flex flex-col items-center justify-center w-full h-full rounded-2xl border-2 border-dashed border-[#bbb5ff] bg-[#f7f8ff] bg-center bg-cover hover:cursor-pointer">
@@ -26,6 +26,12 @@
         </label>
         <button id="submit" class="h-10 w-28 bg-accent rounded-xl mt-6 text-white">Submit</button>
 
+    </div>
+
+    <div class="h-full w-full flex justify-center items-center mt-28">
+        <div id="output" class=" bg-white h-96 w-5/12 rounded-xl">
+
+        </div>
     </div>
 
     <script src="javascripts/home.js"></script>
