@@ -2,6 +2,7 @@ const dropArea = document.getElementById("drop-area");
 const inputFile = document.getElementById("input-file");
 const imgView = document.getElementById("img-view");
 const submitButton = document.getElementById("submit");
+let outputDiv = document.getElementById('output');
 
 inputFile.addEventListener("change",uploadImage);
 
@@ -23,33 +24,36 @@ dropArea.addEventListener("drop",(e)=>{
 });
 
 submitButton.addEventListener ("click",async ()=>{
+    outputDiv.classList.add('hidden');
     if (!inputFile.files[0]) {
         alert('Please upload an image before submitting.');
         return;
     }
     let output = await submitFile();
+
     displayOutput(output);
 });
 
 
 function displayOutput(data){
-    let outputDiv = document.getElementById('output');
-    // outputDiv.innerHTML = data.join('<br><br>');
+
+    outputDiv.classList.remove('hidden');
     outputDiv.innerHTML = '';
     let head = document.createElement('h5');
     outputDiv.appendChild(head);
-    head.classList.add('text-center', 'mb-2');
-    head.textContent = 'Here are five caption generate for your image';
+    head.classList.add('text-center', 'mb-2','font-medium');
+    head.textContent = 'Here are few captions generated for your image';
+    
     data.forEach(item => {
         let outerDiv = document.createElement('div');
         outerDiv.classList.add('sub-output', 'h-max', 'w-full', 'bg-gray-200', 'rounded-xl');
 
         let innerDiv = document.createElement('div');
-        innerDiv.classList.add('h-max', 'flex', 'justify-end');
+        innerDiv.classList.add('h-max', 'flex', 'justify-end','items');
         
         let p = document.createElement('p');
         p.textContent = item;
-        p.classList.add('caption', 'mb-2', 'ml-2');
+        p.classList.add('caption', 'mb-2', 'ml-2', 'text-center');
         let i = document.createElement('i');
         i.classList.add('bi', 'bi-copy', 'h-min', 'text-black', 'text-base', 'cursor-pointer', 'bg-gray-300', 'hover:bg-gray-400', 'px-1.5', 'rounded-md');
         i.id = 'copy';
@@ -59,6 +63,7 @@ function displayOutput(data){
         outerDiv.appendChild(innerDiv);
         outputDiv.appendChild(outerDiv);
     });
+    outputDiv.scrollIntoView({ behavior: 'smooth' });
 }
 
 async function submitFile(){
