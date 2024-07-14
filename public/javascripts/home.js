@@ -85,7 +85,6 @@ async function submitFile(){
     } else {
         
         let data = await response.text();
-        console.log(data.split("&\n"));
         return(data.split("&\n"));
     }
 }

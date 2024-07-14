@@ -38,13 +38,11 @@ router.post('/upload', upload.single('image'), async (req, res) => {
     let path = req.file.path;
     let mimeType = req.file.mimetype;
     
-    if (mimeType !== 'image/png' && mimeType !== 'image/jpeg'){
-        return res.status(400).json({ message: 'File type not supported.' });
-    }
     let output = await generate(path,mimeType);
     res.send(output);
     console.log("Done");
     fs.unlink(req.file.path, err => {
+        console.log("File Deleted!!!");
         if (err) {
             console.error(err);
         }
