@@ -24,10 +24,16 @@ async function generateCaption(path,mimeType) {
     fileToGenerativePart(path, mimeType),
   ];
   
-  const result = await model.generateContent([prompt, ...imageParts]);
-  const response = result.response;
-  const text = response.text(); 
-  return text;
+  try {
+    const result = await model.generateContent([prompt, ...imageParts]);
+    const response = result.response;
+    const text = response.text(); 
+    return text;
+  } catch (error) {
+    console.error('Error occured while generating!', error);
+    // Instead of throwing the error, return it as a string
+    return `Error: ${error.message}`;
+  }
 }
 
 module.exports = generateCaption;

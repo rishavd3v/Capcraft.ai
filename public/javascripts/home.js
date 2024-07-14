@@ -26,7 +26,7 @@ dropArea.addEventListener("drop",(e)=>{
 submitButton.addEventListener ("click",async ()=>{
     outputDiv.classList.add('hidden');
     if (!inputFile.files[0]) {
-        alert('Please upload an image before submitting.');
+        alert('Please upload an image.');
         return;
     }
     let output = await submitFile();
@@ -81,6 +81,7 @@ async function submitFile(){
         body: formData
     })
     if (!response.ok) {
+        alert("Unexpected Error");
         throw new Error(`HTTP error! status: ${response.status}`);
     } else {
         

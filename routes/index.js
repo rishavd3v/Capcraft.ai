@@ -39,7 +39,10 @@ router.post('/upload', upload.single('image'), async (req, res) => {
     let mimeType = req.file.mimetype;
     
     let output = await generate(path,mimeType);
-    res.send(output);
+    if(output.startsWith("Error")){
+        res.status(500).send("Unexpected Error");
+    }
+    else res.send(output);
     console.log("Done");
     fs.unlink(req.file.path, err => {
         console.log("File Deleted!!!");
