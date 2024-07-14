@@ -23,11 +23,10 @@ async function generateCaption(path,mimeType) {
   const imageParts = [
     fileToGenerativePart(path, mimeType),
   ];
-
+  
   const result = await model.generateContent([prompt, ...imageParts]);
   const response = result.response;
   const text = response.text(); 
-  console.log(text);
   return text;
 }
 
