@@ -9,7 +9,8 @@ app.set("view engine","ejs");
 app.set("views", __dirname + "/views");
 app.use(express.static(path.join(__dirname,'public')));
 
-fs.chmod('./uploads', 0o777, (err) => {
+const uploadsDir = path.join(__dirname, 'uploads');
+fs.chmod(uploadsDir, 0o777, (err) => {
     if (err) throw err;
 });
 
