@@ -51,7 +51,7 @@ function displayOutput(data){
         p.textContent = item;
         p.classList.add('caption', 'mb-2', 'ml-2', 'text-center');
         let i = document.createElement('i');
-        i.classList.add('bi', 'bi-copy', 'h-min', 'text-black', 'text-base', 'cursor-pointer', 'bg-gray-300', 'hover:bg-gray-400', 'px-1.5', 'rounded-md');
+        i.classList.add('bi', 'bi-copy', 'h-min', 'text-black', 'text-sm', 'cursor-pointer', 'bg-gray-300', 'hover:bg-gray-400', 'px-1.5', 'rounded-tr-md');
         i.id = 'copy';
 
         innerDiv.appendChild(p);
@@ -93,6 +93,6 @@ async function submitFile(){
     } else {
         
         let data = await response.text();
-        return(data.split(" & "));
+        return data.split("&");
     }
 }
