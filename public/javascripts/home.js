@@ -4,15 +4,12 @@ const imgView = document.getElementById("img-view");
 const submitButton = document.getElementById("submit");
 let outputDiv = document.getElementById('output');
 
-inputFile.addEventListener("change",uploadImage);
-
-function uploadImage(){
-
+inputFile.addEventListener("change",()=>{
     let imgLink = URL.createObjectURL(inputFile.files[0]);
     imgView.style.backgroundImage = `url(${imgLink})`;
     imgView.style.border = 0;
     imgView.textContent = "";
-}
+});
 
 dropArea.addEventListener("dragover",(e)=>{
     e.preventDefault();
@@ -30,7 +27,6 @@ submitButton.addEventListener ("click",async ()=>{
         return;
     }
     let output = await submitFile();
-
     displayOutput(output);
 });
 
@@ -62,6 +58,17 @@ function displayOutput(data){
         innerDiv.appendChild(i);
         outerDiv.appendChild(innerDiv);
         outputDiv.appendChild(outerDiv);
+
+        let copyBtn = document.getElementById('copy');
+        copyBtn.addEventListener('click',()=>{
+            let p = copyBtn.parentElement.querySelector('p');
+            let caption = p.innerText;
+            navigator.clipboard.writeText(caption).then(()=>{
+                console.log("Copied");
+            },(err)=>{
+                console.error("Error in copying"+err);
+            });
+        });
     });
     outputDiv.scrollIntoView({ behavior: 'smooth' });
 }
@@ -86,6 +93,6 @@ async function submitFile(){
     } else {
         
         let data = await response.text();
-        return(data.split("&\n"));
+        return(data.split(" & "));
     }
 }

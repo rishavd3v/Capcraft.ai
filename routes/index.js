@@ -5,14 +5,6 @@ const fs = require("fs");
 const multer = require("multer");
 const generate = require("./generate.js");
 
-// const {initializeApp} = require("firebase/app");
-// const {getStorage, ref, getDownloadURL, uploadBytesResumable} = require("firebase/storage");
-// const fireBaseConfig = require("../firebase.config.js");
-// initializeApp(fireBaseConfig.config);
-
-// const storage = getStorage();
-// const upload = multer({storage:multer.memoryStorage()});
-
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, 'uploads/')
