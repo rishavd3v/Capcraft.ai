@@ -59,12 +59,13 @@ function displayOutput(data){
         outerDiv.appendChild(innerDiv);
         outputDiv.appendChild(outerDiv);
 
-        let copyBtn = document.getElementById('copy');
-        copyBtn.addEventListener('click',()=>{
-            let p = copyBtn.parentElement.querySelector('p');
+        
+        i.addEventListener('click',()=>{
+            let p = i.parentElement.querySelector('p');
             let caption = p.innerText;
             navigator.clipboard.writeText(caption).then(()=>{
                 console.log("Copied");
+                alert("Copied")
             },(err)=>{
                 console.error("Error in copying"+err);
             });
