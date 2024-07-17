@@ -49,9 +49,9 @@ function displayOutput(data){
         
         let p = document.createElement('p');
         p.textContent = item;
-        p.classList.add('caption', 'mb-2', 'ml-2', 'text-center');
+        p.classList.add('caption', 'text-center','mb-2', 'ml-2', 'text-center');
         let i = document.createElement('i');
-        i.classList.add('bi', 'bi-copy', 'h-min', 'text-black', 'text-sm', 'cursor-pointer', 'bg-gray-300', 'hover:bg-gray-400', 'px-1.5', 'rounded-tr-md');
+        i.classList.add('bi', 'bi-copy', 'h-min', 'text-black', 'text-sm', 'cursor-pointer', 'bg-gray-300', 'hover:bg-gray-400', 'px-1.5','ml-1', 'rounded-tr-md');
         i.id = 'copy';
 
         innerDiv.appendChild(p);
