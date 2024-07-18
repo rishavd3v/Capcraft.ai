@@ -51,7 +51,7 @@ function displayOutput(data){
         p.textContent = item;
         p.classList.add('caption', 'text-center','mb-2', 'ml-2', 'text-center');
         let i = document.createElement('i');
-        i.classList.add('bi', 'bi-copy', 'h-min', 'text-black', 'text-sm', 'cursor-pointer', 'bg-gray-300', 'hover:bg-gray-400', 'px-1.5','ml-1', 'rounded-tr-md');
+        i.classList.add('bi', 'bi-copy', 'text-black', 'text-sm', 'cursor-pointer', 'bg-gray-300', 'hover:bg-gray-400', 'px-1.5','ml-1', 'rounded-tr-md','rounded-br-md', 'flex', 'items-center');
         i.id = 'copy';
 
         innerDiv.appendChild(p);
@@ -65,7 +65,15 @@ function displayOutput(data){
             let caption = p.innerText;
             navigator.clipboard.writeText(caption).then(()=>{
                 console.log("Copied");
-                alert("Copied")
+                // alert("Copied");
+                swal.fire({
+                    title: "Success",
+                    text: "Copied",
+                    icon:"success",
+                    confirmButtonText: "OK",
+                    hight:"10em",
+                    allowOutsideClick: "true",
+                });
             },(err)=>{
                 console.error("Error in copying"+err);
             });
@@ -89,7 +97,7 @@ async function submitFile(){
         body: formData
     })
     if (!response.ok) {
-        alert("Unexpected Error");
+        alert("Server Error! Please retry after a while.");
         throw new Error(`HTTP error! status: ${response.status}`);
     } else {
         
