@@ -4,12 +4,7 @@ const imgView = document.getElementById("img-view");
 const submitButton = document.getElementById("submit");
 let outputDiv = document.getElementById('output');
 
-inputFile.addEventListener("change",()=>{
-    let imgLink = URL.createObjectURL(inputFile.files[0]);
-    imgView.style.backgroundImage = `url(${imgLink})`;
-    imgView.style.border = 0;
-    imgView.textContent = "";
-});
+inputFile.addEventListener("change",uploadImage);
 
 dropArea.addEventListener("dragover",(e)=>{
     e.preventDefault();
@@ -19,6 +14,12 @@ dropArea.addEventListener("drop",(e)=>{
     inputFile.files = e.dataTransfer.files;
     uploadImage();
 });
+function uploadImage(){
+    let imgLink = URL.createObjectURL(inputFile.files[0]);
+    imgView.style.backgroundImage = `url(${imgLink})`;
+    imgView.style.border = 0;
+    imgView.textContent = "";
+}
 
 submitButton.addEventListener ("click",async ()=>{
     outputDiv.classList.add('hidden');
@@ -71,7 +72,6 @@ function displayOutput(data){
                     text: "Copied",
                     icon:"success",
                     confirmButtonText: "OK",
-                    hight:"10em",
                     allowOutsideClick: "true",
                 });
             },(err)=>{
