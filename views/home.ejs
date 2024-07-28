@@ -11,10 +11,13 @@
 
 </head>
 <body class="bg-[#101010]">
+    <!-- <div class="load absolute flex h-screen w-screen items-center justify-center bg-gray-400 bg-opacity-15">
+        <h3 class="text-white opacity-100 bg-black p-5 rounded-xl">Generating content...</h3>
+    </div> -->
     <nav class="w-full h-16 flex justify-end items-center  py-10 px-6">
         <div>
             <a href="https://www.github.com/rishavd3v" target="_blank">
-                <button class="bg-accent text-white font-bold px-2 py-1.5 rounded-sm text-center"><i class="bi bi-github px-1"></i>GitHub</button>
+                <button class="bg-accent text-white font-bold px-2 py-1.5 rounded-sm text-center shadow-black shadow-lg"><i class="bi bi-github px-1"></i>GitHub</button>
             </a>
         </div>
     </nav>
@@ -34,7 +37,8 @@
                 <span class="text-xs mt-2 text-[#777]">Upload any image from desktop (.png & .jpeg)</span>
             </div>
         </label>
-        <button id="submit" class="h-10 w-28 bg-secondary rounded-xl mt-5 text-white">Generate</button>
+        <button id="submit" class="h-10 w-28 bg-secondary rounded-xl mt-5 text-white shadow-black shadow-lg">Generate</button>
+        <div id="loading" class="p-3 bg-white rounded-xl mt-5 text-black shadow-black shadow-lg hidden">Generating Content...</div>
     </div>
 
     <div class=" h-full w-full flex justify-center items-center mt-28">

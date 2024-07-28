@@ -3,6 +3,7 @@ const inputFile = document.getElementById("input-file");
 const imgView = document.getElementById("img-view");
 const submitButton = document.getElementById("submit");
 let outputDiv = document.getElementById('output');
+const loadingBtn = document.getElementById('loading');
 
 inputFile.addEventListener("change",uploadImage);
 
@@ -23,10 +24,13 @@ function uploadImage(){
 
 submitButton.addEventListener ("click",async ()=>{
     outputDiv.classList.add('hidden');
+    loadingBtn.style.display = 'block';
+    submitButton.classList.add('hidden');
     if (!inputFile.files[0]) {
         alert('Please upload an image.');
         return;
     }
+    // load
     let output = await submitFile();
     displayOutput(output);
 });
@@ -79,6 +83,8 @@ function displayOutput(data){
             });
         });
     });
+    loadingBtn.style.display = 'none';
+    submitButton.classList.remove('hidden');
     outputDiv.scrollIntoView({ behavior: 'smooth' });
 }
 
