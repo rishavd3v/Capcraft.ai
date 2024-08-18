@@ -24,15 +24,17 @@ function uploadImage(){
 
 submitButton.addEventListener ("click",async ()=>{
     outputDiv.classList.add('hidden');
-    loadingBtn.style.display = 'block';
-    submitButton.classList.add('hidden');
     if (!inputFile.files[0]) {
         alert('Please upload an image.');
         return;
     }
-    // load
-    let output = await submitFile();
-    displayOutput(output);
+    try{
+        let output = await submitFile();
+        displayOutput(output);
+    }
+    catch(err){
+        console.error(err);
+    }
 });
 
 
@@ -93,8 +95,12 @@ async function submitFile(){
     let mimeType = imgFile.type;
     
     if (mimeType !== 'image/png' && mimeType !== 'image/jpeg'){
-        return alert("File not supported!!!");
+        alert("File not supported!!!");
+        throw new Error("File not supported!!!");
     }
+
+    loadingBtn.style.display = 'block';
+    submitButton.classList.add('hidden');
 
     let formData = new FormData();
     formData.append('image', imgFile);
