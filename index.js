@@ -17,7 +17,7 @@ fs.chmod(uploadsDir, 0o777, (err) => {
 app.use(indexRouter);
 
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 app.listen(port,()=>{
     console.log("App is running on port "+port);
 });
